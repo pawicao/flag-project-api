@@ -2,10 +2,8 @@ import flask
 from flask import request, jsonify
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
 
 @app.route('/')
-@app.route('/home')
 def home():
 	response = jsonify("HOME PAGE!")
 	response.headers.add('Access-Control-Allow-Origin', '*')
@@ -19,4 +17,5 @@ def api_hello():
 	response.headers.add('Access-Control-Allow-Origin', '*')
 	return response
 
-app.run()
+if __name__ == '__main__':
+    app.run(debug=True, use_reloader=True)
