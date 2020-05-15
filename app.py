@@ -21,7 +21,7 @@ def api_hello():
 @app.route('/getAll', methods=['GET'])
 def get_all_countries():
 	with open('assets/all_countries.json', 'r') as file:
-		response = file.read()
+		response = jsonify(file.read())
 		response.headers.add('Access-Control-Allow-Origin', '*')
 		return response
 
