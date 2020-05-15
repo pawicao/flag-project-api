@@ -13,7 +13,7 @@ def home():
 # A route to return an example "Hello!"
 @app.route('/hello', methods=['GET'])
 def api_hello():
-	response = jsonify("Elo!")
+	response = jsonify("Elo, byku!")
 	response.headers.add('Access-Control-Allow-Origin', '*')
 	return response
 
