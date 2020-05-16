@@ -1,0 +1,13 @@
+https://www.crwflags.com/fotw/flags/xf-csts.html
+http://student.agh.edu.pl/~pawicao/flag_project/
+http://student.agh.edu.pl/~pawicao/flag_project/flags/bfa.svg
+Pytania:
+Czy flaga ma 3 kolory?
+Czy ma kolor czerwony?
+Czy ma kolor żółty?
+Czy flaga ma 4 kolory?
+Czy proporcja szerokości do wysokości wynosi ponad ileś tam?
+Czy na fladze są tylko czyste kolory (bez symboli, nie wliczajac gwiazdek <3 )? to jest do piwka i hardcode
+Czy kolory na fladze ukladaja sie w krzyz?
+Czy na fladze znajduje się gwiazdka?
+Czy na fladze znajduje się trójkątny element?
