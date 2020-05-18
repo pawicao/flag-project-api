@@ -34,5 +34,5 @@ def is_poland(country):
 
 def find_poland(countries, answer):
     if answer:
-        return filter(is_poland, countries)
-    return filter(nope(is_poland), countries)
+        return list(filter(is_poland, countries))
+    return list(filter(nope(is_poland), countries))
