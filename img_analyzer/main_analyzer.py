@@ -33,7 +33,6 @@ def is_poland(country):
 
 
 def find_poland(countries, answer):
-    countries_list = json.loads(countries)
     if answer:
-        return filter(is_poland, countries_list)
-    return filter(nope(is_poland), countries_list)
+        return filter(is_poland, countries)
+    return filter(nope(is_poland), countries)
