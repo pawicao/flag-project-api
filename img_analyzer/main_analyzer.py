@@ -2,7 +2,7 @@
 import numpy as np
 import cv2
 import json
-from utils.functions import _not
+from utils.functions import nope
 
 # -- Color detection --
 
@@ -37,4 +37,4 @@ def find_poland(countries, answer):
     countries_list = json.loads(countries)
     if answer:
         return filter(is_poland, countries_list)
-    return filter(_not(is_poland), countries_list)
+    return filter(nope(is_poland), countries_list)
