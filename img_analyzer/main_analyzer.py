@@ -1,6 +1,8 @@
 # import the necessary packages
 import numpy as np
 import cv2
+import json
+from utils.functions import _not
 
 # -- Color detection --
 
@@ -21,3 +23,18 @@ output = cv2.bitwise_and(image, image, mask=mask)
 # show the images
 cv2.imshow("images", np.hstack([image, output]))
 cv2.waitKey(0)
+
+
+# --
+# --
+# --
+# -- Sample function (returns only Poland if True; removes Poland from list if False) --
+def is_poland(country):
+    return country['code'] == 'POL'
+
+
+def find_poland(countries, answer):
+    countries_list = json.loads(countries)
+    if answer:
+        return filter(is_poland, countries_list)
+    return filter(_not(is_poland), countries_list)

@@ -1,5 +1,6 @@
 import flask
 from flask import jsonify, request
+from question_handler import get_response
 
 app = flask.Flask(__name__)
 
@@ -19,7 +20,7 @@ def get_all_countries():
 @app.route('/processQuestion', methods=['POST'])
 def process_question():
     data = request.get_json()
-    response = jsonify(data)
+    response = jsonify(get_response(data['countries'], data['question']['id'], data['answer']))
     response.mimetype = "application/json"
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
