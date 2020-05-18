@@ -6,6 +6,7 @@ app = flask.Flask(__name__)
 
 
 # Get all countries
+@app.route('/', methods=['GET'])
 @app.route('/getAll', methods=['GET'])
 def get_all_countries():
     with open('assets/all_countries.json', 'r') as file:
@@ -16,7 +17,6 @@ def get_all_countries():
 
 
 # Get all countries and the first question
-@app.route('/', methods=['GET'])
 @app.route('/start', methods=['GET'])
 def start():
     with open('assets/all_countries.json', 'r') as file:
