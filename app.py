@@ -1,9 +1,10 @@
 import flask, json
+from flask_cors import CORS
 from flask import jsonify, request
 from question_handler import get_response, questions
 
 app = flask.Flask(__name__)
-
+CORS(app)
 
 # Get all countries
 @app.route('/getAll', methods=['GET'])
@@ -36,8 +37,8 @@ def start():
 def process_question():
     data = request.get_json()
     response = jsonify(get_response(data['countries'], data['question']['id'], data['answer']))
-    response.mimetype = "application/json"
     response.headers.add('Access-Control-Allow-Origin', '*')
+    response.mimetype = "application/json"
     return response
 
 
