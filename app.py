@@ -18,12 +18,13 @@ def get_all_countries():
 # Process answer, return filtered list of countries together with a new question
 @app.route('/processQuestion', methods=['POST'])
 def process_question():
-    data = request.json
+    data = request.get_json()
     response = jsonify(data)
     response.mimetype = "application/json"
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 
+# Start the application
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
