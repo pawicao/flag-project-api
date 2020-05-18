@@ -15,23 +15,7 @@ def get_all_countries():
         return response
 
 
-# Get all countries and the first question
-@app.route('/', methods=['GET'])
-@app.route('/start', methods=['GET'])
-def start():
-    with open('assets/all_countries.json', 'r') as file:
-        countries = file.read()
-    response_content = jsonify({
-        "countries": countries,
-        "question": {
-            "id": 1,
-            "content": questions[1]
-        }
-    })
-    response = flask.make_response(response_content, 200)
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.mimetype = "application/json"
-    return response
+
 
 
 # Process answer, return filtered list of countries together with a new question
