@@ -23,6 +23,6 @@ def get_response(countries_arg, question_id, answer):
         "countries": question_functions[question_id](countries_arg, answer),
         "question": {
             "id": question_id+1,
-            "content": questions[question_id]
+            "content": questions[question_id+1]
         }
     }
