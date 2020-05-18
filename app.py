@@ -21,8 +21,7 @@ def get_all_countries():
 def start():
     with open('assets/all_countries.json', 'r') as file:
         countries = file.read()
-    response_content = jsonify({
-        "countries": countries,
+    response_content = '{ "countries": ' + countries + ',' + jsonify({
         "question": {
             "id": 1,
             "content": questions[1]
