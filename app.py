@@ -1,12 +1,11 @@
 import flask
 from flask import jsonify, request
-from question_handler import get_response
+from question_handler import get_response, questions
 
 app = flask.Flask(__name__)
 
 
 # Get all countries
-@app.route('/', methods=['GET'])
 @app.route('/getAll', methods=['GET'])
 def get_all_countries():
     with open('assets/all_countries.json', 'r') as file:
@@ -14,6 +13,25 @@ def get_all_countries():
         response.headers.add('Access-Control-Allow-Origin', '*')
         response.mimetype = "application/json"
         return response
+
+
+# Get all countries and the first question
+@app.route('/', methods=['GET'])
+@app.route('/start', methods=['GET'])
+def start():
+    with open('assets/all_countries.json', 'r') as file:
+        countries = file.read()
+    response_content = jsonify({
+        "countries": countries,
+        "question": {
+            "id": 1,
+            "content": questions[1]
+        }
+    })
+    response = flask.make_response(response_content, 200)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.mimetype = "application/json"
+    return response
 
 
 # Process answer, return filtered list of countries together with a new question
