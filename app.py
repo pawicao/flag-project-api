@@ -1,4 +1,4 @@
-import flask
+import flask, json
 from flask import jsonify, request
 from question_handler import get_response, questions
 
@@ -21,7 +21,7 @@ def get_all_countries():
 def start():
     with open('assets/all_countries.json', 'r') as file:
         countries = file.read()
-    response_content = '{ "countries": ' + countries + ',' + jsonify({
+    response_content = '{ "countries": ' + countries + ',' + json.dumps({
         "question": {
             "id": 1,
             "content": questions[1]
