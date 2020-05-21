@@ -23,7 +23,7 @@ def start():
     with open('assets/all_countries.json', 'r') as file:
         countries = file.read()
     response_content = '{ "countries": ' + countries + ',' + '"question":' + json.dumps({
-        "id": 1,
+        "id": 2,
         "content": questions[1]
     }) + '}'
     response = flask.make_response(response_content, 200)
