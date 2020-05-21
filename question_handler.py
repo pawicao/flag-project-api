@@ -14,7 +14,8 @@ questions = {
 }
 
 question_functions = {
-    1: find_poland
+    1: find_poland,
+    2: has_more_colors
 }
 
 

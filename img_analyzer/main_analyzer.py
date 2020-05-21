@@ -2,6 +2,33 @@ import numpy as np
 import cv2
 import json
 from utils.functions import nope
+from PIL import Image
+
+
+def has_more_colors(countries, answer):
+    if answer:
+        return list(filter(has_color_eq, countries))
+    return list(filter(nope(has_color_eq), countries))
+
+
+def has_color_eq(country):
+    value = 3
+    path = 'assets/flags/' + country + '.PNG'
+    k = 0.005
+
+    img = Image.open(path)
+    width, height = img.size
+    all_colors = Image.open(path).getcolors(1000000)
+    sorted_colors = sorted(all_colors, reverse=True)
+    number_of_occurrences = []
+    for i in sorted_colors:
+        number_of_occurrences.append(i[0])
+    counted_colors = []
+    for i in range(len(number_of_occurrences)):
+        if number_of_occurrences[i] > (k*width*height):
+            counted_colors.append(number_of_occurrences[i])
+
+    return len(counted_colors) == value
 
 # -- Color detection --
 
