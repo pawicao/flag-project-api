@@ -24,7 +24,7 @@ def start():
         countries = file.read()
     response_content = '{ "countries": ' + countries + ',' + '"question":' + json.dumps({
         "id": 2,
-        "content": questions[1]
+        "content": questions[2]
     }) + '}'
     response = flask.make_response(response_content, 200)
     response.headers.add('Access-Control-Allow-Origin', '*')
