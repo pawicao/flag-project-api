@@ -14,7 +14,7 @@ def has_more_colors(countries, answer):
 def has_color_eq(country):
     value = 3
     path = 'assets/flags/' + country['code'] + '.PNG'
-    k = 0.005
+    k = 0.007
 
     img = Image.open(path)
     width, height = img.size
