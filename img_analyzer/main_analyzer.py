@@ -8,9 +8,10 @@ from PIL import Image
 # -- Variables --
 # ---------------
 
-# Colors BGR boundaries
-red = ([0, 0, 164], [97, 105, 255])
-yellow = ([64, 213, 236], [208, 253, 255])
+# Colors HSV boundaries
+red = ((0, 40, 20), (13, 255, 255))
+red_second = ((170, 40, 20), (180, 255, 255))
+yellow = ((22, 40, 20), (33, 255, 255))
 
 
 # ---------------
@@ -66,17 +67,23 @@ def has_colors_eq(country, value, threshold):
 # Function wrapper (extra_params[0] - color BGR boundaries)
 def have_shade(countries, answer, extra_params):
     if answer:
-        return list(filter(lambda country: has_shade(country, extra_params[0]), countries))
-    return list(filter(lambda country: not has_shade(country, extra_params[0]), countries))
+        return list(filter(lambda country: has_shade(country, extra_params[0], extra_params[1]), countries))
+    return list(filter(lambda country: not has_shade(country, extra_params[0], extra_params[1]), countries))
 
 
 # Creates mask within given boundaries and returns True if there are some pixels in an out after bitwise AND operation
-def has_shade(country, color_boundaries):
+def has_shade(country, color_boundaries, color_outer_boundaries):
     path = 'assets/flags/' + country['code'] + '.PNG'
     img = cv2.imread(path)
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     lower = np.array(color_boundaries[0], dtype="uint8")
     upper = np.array(color_boundaries[1], dtype="uint8")
-    mask = cv2.inRange(img, lower, upper)
+    mask = cv2.inRange(hsv, lower, upper)
+    if color_outer_boundaries is not None:
+        lower = np.array(color_outer_boundaries[0], dtype="uint8")
+        upper = np.array(color_outer_boundaries[1], dtype="uint8")
+        mask2 = cv2.inRange(hsv, lower, upper)
+        mask = cv2.bitwise_or(mask, mask2)
     output = cv2.bitwise_and(img, img, mask=mask)
     return (output != 0).any()
 
