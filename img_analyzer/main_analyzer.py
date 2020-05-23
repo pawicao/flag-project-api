@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-from utils.functions import nope
 from utils.extra import countries_extra
 from PIL import Image
 
@@ -24,8 +23,8 @@ yellow = ([64, 213, 236], [208, 253, 255])
 # Function wrapper
 def find_poland(countries, answer, extra_params):
     if answer:
-        return list(filter(is_poland, countries))
-    return list(filter(nope(is_poland), countries))
+        return list(filter(lambda country: is_poland(country), countries))
+    return list(filter(lambda country: not is_poland(country), countries))
 
 
 # Compares the country code to check if it equals Poland
@@ -68,7 +67,7 @@ def has_colors_eq(country, value, threshold):
 def have_shade(countries, answer, extra_params):
     if answer:
         return list(filter(lambda country: has_shade(country, extra_params[0]), countries))
-    return list(filter(lambda country: nope(has_shade(country, extra_params[0])), countries))
+    return list(filter(lambda country: not has_shade(country, extra_params[0]), countries))
 
 
 # Creates mask within given boundaries and returns True if there are some pixels in an out after bitwise AND operation
@@ -89,7 +88,7 @@ def has_shade(country, color_boundaries):
 def have_greater_ratio(countries, answer, extra_params):
     if answer:
         return list(filter(lambda country: has_greater_ratio(country, extra_params[0], extra_params[1]), countries))
-    return list(filter(lambda country: nope(has_greater_ratio(country, extra_params[0], extra_params[1])), countries))
+    return list(filter(lambda country: not has_greater_ratio(country, extra_params[0], extra_params[1]), countries))
 
 
 # Compares ratios of given width/height vs width/height of the country's flag
@@ -108,7 +107,7 @@ def has_greater_ratio(country, width_given, height_given):
 def have_triangle(countries, answer, extra_params):
     if answer:
         return list(filter(lambda country: has_triangle(country), countries))
-    return list(filter(lambda country: nope(has_triangle(country)), countries))
+    return list(filter(lambda country: not has_triangle(country), countries))
 
 
 # OpenCV triangular shape detection
@@ -134,7 +133,7 @@ def has_triangle(country):
 def have_shape(countries, answer, extra_params):
     if answer:
         return list(filter(lambda country: has_shape(country, extra_params[0]), countries))
-    return list(filter(lambda country: nope(has_shape(country, extra_params[0])), countries))
+    return list(filter(lambda country: not has_shape(country, extra_params[0]), countries))
 
 
 # Checks the boolean parameter in the extra countries dictionary
