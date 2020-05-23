@@ -1,10 +1,11 @@
 import flask, json
 from flask_cors import CORS
 from flask import jsonify, request
-from question_handler import get_response, questions
+from utils.question_handler import get_response, questions
 
 app = flask.Flask(__name__)
 CORS(app)
+
 
 # Get all countries
 @app.route('/getAll', methods=['GET'])
@@ -24,7 +25,7 @@ def start():
         countries = file.read()
     response_content = '{ "countries": ' + countries + ',' + '"question":' + json.dumps({
         "id": 2,
-        "content": questions[2]
+        "content": questions[2].content
     }) + '}'
     response = flask.make_response(response_content, 200)
     response.headers.add('Access-Control-Allow-Origin', '*')
