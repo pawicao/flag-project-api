@@ -104,7 +104,7 @@ def has_greater_ratio(country, width_given, height_given):
     img = Image.open(path)
     width, height = img.size
     img.close()
-    return (width/height) > (width_given/height_given)
+    return (width/height) >= (width_given/height_given)
 
 
 # -- TRIANGLE DETECTION --

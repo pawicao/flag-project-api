@@ -16,7 +16,7 @@ questions = {
     3: Question(3, "Does the flag have any shades of red?", have_shade, [red, red_second]),
     4: Question(4, "Does the flag have any shades of yellow?", have_shade, [yellow, None]),
     5: Question(5, "Does the flag have 4 colors?", have_colors_eq, [4, 0.005]),
-    6: Question(6, "Is the width/height ratio of the flag greater than 8:5?", have_greater_ratio, [8, 5]),
+    6: Question(6, "Is the width/height ratio of the flag greater or equal 8:5?", have_greater_ratio, [8, 5]),
     7: Question(7, "Is there a cross element on the flag?", have_shape, ["has_cross"]),
     8: Question(8, "Are there any stars on the flag?", have_shape, ["has_star"]),
     9: Question(9, "Is there a triangular element on the flag?", have_triangle, None),
