@@ -33,7 +33,7 @@ def get_response(countries_arg, question_id, answer):
     return {
         "countries": return_countries,
         "question": {
-            "id": return_id + 1,
+            "id": return_id,
             "content": questions[return_id].content
         }
     }
