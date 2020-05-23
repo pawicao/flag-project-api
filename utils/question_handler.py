@@ -25,10 +25,11 @@ questions = {
 
 
 def get_response(countries_arg, question_id, answer):
+    return_id = 0 if (question_id == max(questions)) else (question_id + 1)
     return {
         "countries": questions[question_id].function(countries_arg, answer, questions[question_id].extra_params),
         "question": {
-            "id": question_id + 1,
-            "content": questions[question_id].content
+            "id": return_id + 1,
+            "content": questions[return_id].content
         }
     }
