@@ -193,7 +193,7 @@ countries_extra = {
     "RWA": {"has_other_symbols": True, "has_cross": False, "has_star": False},
     "SAU": {"has_other_symbols": True, "has_cross": False, "has_star": False},
     "SDN": {"has_other_symbols": False, "has_cross": False, "has_star": False},
-    "SEN": {"has_other_symbols": False, "has_cross": True, "has_star": True},
+    "SEN": {"has_other_symbols": False, "has_cross": False, "has_star": True},
     "SGP": {"has_other_symbols": True, "has_cross": True, "has_star": True},
     "SGS": {"has_other_symbols": True, "has_cross": True, "has_star": False},
     "SHN": {"has_other_symbols": True, "has_cross": True, "has_star": False},

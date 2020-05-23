@@ -40,7 +40,7 @@ def is_poland(country):
 def have_colors_eq(countries, answer, extra_params):
     if answer:
         return list(filter(lambda country: has_colors_eq(country, extra_params[0], extra_params[1]), countries))
-    return list(filter(lambda country: nope(has_colors_eq(country, extra_params[0], extra_params[1])), countries))
+    return list(filter(lambda country: not has_colors_eq(country, extra_params[0], extra_params[1]), countries))
 
 
 # Counts the amount of pixels of different colors and adds them to length is they're above the threshold
