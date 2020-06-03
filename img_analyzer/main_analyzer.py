@@ -48,7 +48,7 @@ def has_colors_eq(country, value, threshold):
     path = 'assets/flags/' + country['code'] + '.PNG'
     img = Image.open(path)
     width, height = img.size
-    all_colors = Image.open(path).getcolors(1000000)
+    all_colors = img.getcolors(1000000)
     sorted_colors = sorted(all_colors, reverse=True)
     number_of_occurrences = []
     for i in sorted_colors:
@@ -59,6 +59,33 @@ def has_colors_eq(country, value, threshold):
             counted_colors.append(number_of_occurrences[i])
     img.close()
     return len(counted_colors) == value
+
+
+# -- DOMINATING COLOR --
+# Checks if countries has a color which surface is more than "extra_param"% of the flag surface
+
+# Function wrapper (extra_params[0] - percentage)
+def have_dominating_color(countries, answer, extra_params):
+    if answer:
+        return list(filter(lambda country: has_dominating_color(country, extra_params[0]), countries))
+    return list(filter(lambda country: not has_dominating_color(country, extra_params[0]), countries))
+
+
+# Counts the amount of pixels of different colors and adds them to length is they're above the threshold
+def has_dominating_color(country, percentage):
+    path = 'assets/flags/' + country['code'] + '.PNG'
+    img = Image.open(path)
+    all_colors = img.getcolors(1000000)
+    sorted_colors = sorted(all_colors, reverse=True)
+    number_of_occurrences = []
+    for i in sorted_colors:
+        number_of_occurrences.append(i[0])
+
+    my_sum = 0
+    for i in range(len(number_of_occurrences)):
+        my_sum = my_sum + number_of_occurrences[i]
+    img.close()
+    return number_of_occurrences[0]/my_sum > percentage
 
 
 # -- COLOR DETECTION --
