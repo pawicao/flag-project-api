@@ -11,7 +11,7 @@ from PIL import Image
 # Colors HSV boundaries
 red = ((0, 40, 20), (13, 255, 255))
 red_second = ((170, 40, 20), (180, 255, 255))
-yellow = ((22, 40, 20), (33, 255, 255))
+yellow = ((19, 40, 20), (33, 255, 255))
 
 
 # ---------------
