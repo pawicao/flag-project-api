@@ -175,3 +175,15 @@ def have_shape(countries, answer, extra_params):
 # Checks the boolean parameter in the extra countries dictionary
 def has_shape(country, shape):
     return countries_extra[country['code']][shape]
+
+
+# Function wrapper (extra_params[0] - shape parameter (triband))
+def are_vertical_triband(countries, answer, extra_params):
+    if answer:
+        return list(filter(lambda country: is_vertical_triband(country, extra_params[0]), countries))
+    return list(filter(lambda country: not is_vertical_triband(country, extra_params[0]), countries))
+
+
+# Checks the boolean parameter in the extra triband countries dictionary
+def is_vertical_triband(country, shape):
+    return countries_extra[country['code']][shape]
