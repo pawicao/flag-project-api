@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from utils.extra import countries_extra
+from utils.extra import countries_extra, tribands_details
 from PIL import Image
 
 
@@ -186,4 +186,4 @@ def are_vertical_triband(countries, answer, extra_params):
 
 # Checks the boolean parameter in the extra triband countries dictionary
 def is_vertical_triband(country, shape):
-    return countries_extra[country['code']][shape]
+    return tribands_details[country['code']][shape]
