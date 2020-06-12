@@ -96,6 +96,7 @@ def new_have_colors_eq(countries):
 
 
 def new_has_colors_eq(country, threshold, values):
+    print(country)
     path = 'assets/flags/' + country['code'] + '.PNG'
     img = Image.open(path)
     width, height = img.size
