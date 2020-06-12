@@ -224,12 +224,25 @@ def has_shade(country, color_boundaries, color_outer_boundaries):
 
 
 # ---
+def new_first_shade_question(countries):
+    result_faulty = []
+    result_truthy = []
+    for country in countries:
+        result = new_has_shade(country, [green])
+        if result[1][0]:
+            result_truthy.append(result[0])
+        else:
+            result_faulty.append(result[0])
+    question_content = "Does the flag have any shade of green?"
+    return question_content, result_truthy, result_faulty
+
+
 def new_have_shade(countries):
     total_len = len(countries)
     best_proportion = 1.0
     best_value_index = -1
-    values = [[red, red_second], [yellow], [green], [white], [blue]]
-    true_occurencies_for_values = [0, 0, 0, 0, 0]
+    values = [[red, red_second], [yellow], [white], [blue]]
+    true_occurencies_for_values = [0, 0, 0, 0]
     temp_list = []
     for country in countries:
         result_list = new_has_shade(country, values)
