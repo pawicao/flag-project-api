@@ -1,7 +1,7 @@
 import flask, json
 from flask_cors import CORS
 from flask import jsonify, request
-from utils.question_handler import get_response, questions
+from utils.question_handler import get_response, questions, get_next_question
 
 app = flask.Flask(__name__)
 CORS(app)
@@ -23,11 +23,17 @@ def get_all_countries():
 def start():
     with open('assets/all_countries.json', 'r') as file:
         countries = file.read()
-    response_content = '{ "countries": ' + countries + ',' + '"question":' + json.dumps({
-        "id": 2,
-        "content": questions[2].content
-    }) + '}'
-    response = flask.make_response(response_content, 200)
+    question_details = get_next_question(countries)
+    dic_response = {
+        "countries": countries,
+        "faulty_countries": question_details[2],
+        "truthy_countries": question_details[1],
+        "question": {
+            "id": 555,
+            "content": question_details[0]
+        }
+    }
+    response = jsonify(dic_response)
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.mimetype = "application/json"
     return response
@@ -37,10 +43,17 @@ def start():
 @app.route('/processQuestion', methods=['POST'])
 def process_question():
     data = request.get_json()
-    response = jsonify(get_response(data['countries'], data['question']['id'], data['answer']))
+    response = jsonify(get_response(data['truthy_countries'], data['faulty_countries'], data['answer']))
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.mimetype = "application/json"
     return response
+#@app.route('/processQuestion', methods=['POST'])
+#def process_question():
+#    data = request.get_json()
+#    response = jsonify(get_response(data['countries'], data['question']['id'], data['answer']))
+#    response.headers.add('Access-Control-Allow-Origin', '*')
+#    response.mimetype = "application/json"
+#    return response
 
 
 # Start the application

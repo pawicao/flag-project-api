@@ -63,6 +63,58 @@ def has_colors_eq(country, value, threshold):
     return len(counted_colors) == value
 
 
+def new_have_colors_eq(countries):
+    total_len = len(countries)
+    best_proportion = 1.0
+    best_value_index = -1
+    values = [2, 3, 4, 5, 6]
+    true_occurencies_for_values = [0, 0, 0, 0, 0]
+    temp_list = []
+    for country in countries:
+        temp_list.append(new_has_colors_eq(country, 0.005, values))
+        result_list = new_has_colors_eq(country, 0.005, values)
+        bool_list = result_list[1]
+        for i in range (len(bool_list)):
+            if bool_list[i]:
+                true_occurencies_for_values[i] += true_occurencies_for_values[i]
+    for i in range (len(values)):
+        proportion = true_occurencies_for_values[i]/total_len
+        if abs(0.5 - proportion) < best_proportion:
+            best_proportion = proportion
+            best_value_index = i
+    result_faulty = []
+    result_truthy = []
+    for i in range (len(countries)):
+        record = temp_list[i]
+        booly = record[1]
+        if booly[best_value_index]:
+            result_truthy.append(record[0])
+        else:
+            result_faulty.append(record[0])
+    question_content = "Does the flag have {} colors?".format(values[best_value_index])
+    return (question_content, result_truthy, result_faulty, best_proportion)
+
+
+def new_has_colors_eq(country, threshold, values):
+    path = 'assets/flags/' + country['code'] + '.PNG'
+    img = Image.open(path)
+    width, height = img.size
+    all_colors = img.getcolors(1000000)
+    sorted_colors = sorted(all_colors, reverse=True)
+    number_of_occurrences = []
+    for i in sorted_colors:
+        number_of_occurrences.append(i[0])
+    counted_colors = []
+    for i in range(len(number_of_occurrences)):
+        if number_of_occurrences[i] > (threshold * width * height):
+            counted_colors.append(number_of_occurrences[i])
+    img.close()
+    return_list = []
+    for val in values:
+        return_list.append(len(counted_colors) == val)
+    return (country, return_list)
+
+
 # -- DOMINATING COLOR --
 # Checks if countries has a color which surface is more than "extra_param"% of the flag surface
 
