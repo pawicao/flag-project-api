@@ -32,23 +32,26 @@ def get_response(true_countries, false_countries, answer):
     countries_to_pass = true_countries
     if not answer:
         countries_to_pass = false_countries
-    if(len(countries_to_pass) == 0):
+    if len(countries_to_pass) == 0:
         return {
             "countries": countries_to_pass,
             "faulty_countries": countries_to_pass,
             "truthy_countries": countries_to_pass,
             "question": {
-                "id": 555,
+                "id": 0,
                 "content": "Tne end."
             }
         }
-    next_question = get_next_question(countries_to_pass) #(QuestionContent, Countries yes, Countries no)
+    next_question = get_next_question(countries_to_pass)
+    question_id = 555
+    if len(countries_to_pass) == len(next_question[2]) or len(countries_to_pass) == len(next_question[1]):
+        question_id = 0
     return {
         "countries": countries_to_pass,
         "faulty_countries": next_question[2],
         "truthy_countries": next_question[1],
         "question": {
-            "id": 555,
+            "id": question_id,
             "content": next_question[0]
         }
     }
