@@ -25,7 +25,7 @@ def start():
         countries = file.read()
     question_details = get_next_question(json.loads(countries))
     dic_response = {
-        "countries": countries,
+        "countries": json.loads(countries),
         "faulty_countries": question_details[2],
         "truthy_countries": question_details[1],
         "question": {
