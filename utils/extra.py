@@ -40,7 +40,7 @@ countries_extra = {
     "CAF": {"has_other_symbols": False, "has_cross": False, "has_star": True, "is_triband": False},
     "CAN": {"has_other_symbols": False, "has_cross": False, "has_star": False, "is_triband": True},
     "CCK": {"has_other_symbols": True, "has_cross": False, "has_star": True, "is_triband": False},
-    "CHE": {"has_other_symbols": True, "has_cross": True, "has_star": False, "is_triband": False},
+    "CHE": {"has_other_symbols": False, "has_cross": True, "has_star": False, "is_triband": False},
     "CHL": {"has_other_symbols": False, "has_cross": False, "has_star": True, "is_triband": False},
     "CHN": {"has_other_symbols": False, "has_cross": False, "has_star": False, "is_triband": False},
     "CIV": {"has_other_symbols": False, "has_cross": False, "has_star": False, "is_triband": True},
