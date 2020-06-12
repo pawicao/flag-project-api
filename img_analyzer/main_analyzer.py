@@ -288,7 +288,7 @@ def new_have_shade(countries):
     elif best_value_index == 4:
         question_inner_content = "blue"
     else:
-        return ("Questions are over!", [], [], 1.0)
+        return ("The end.", [], [], 1.0)
     question_content = "Does the flag have any shades of {}?".format(question_inner_content)
     return (question_content, result_truthy, result_faulty, best_proportion)
 
@@ -457,11 +457,11 @@ def new_have_shape(countries):
     elif best_value_index == 1:
         question_content = "Are there any stars on the flag?"
     elif best_value_index == 2:
-        question_content = "Are there any symbols (expect stars and crosses) on the flag?"
+        question_content = "Are there any symbols (except stars and crosses) on the flag?"
     elif best_value_index == 3:
         question_content = "Is the flag a triband?"
     else:
-        return "Questions are over!", [], [], 1.0
+        return "The end.", [], [], 1.0
     return question_content, result_truthy, result_faulty, best_proportion
 
 

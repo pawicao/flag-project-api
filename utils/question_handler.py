@@ -39,7 +39,7 @@ def get_response(true_countries, false_countries, answer):
             "truthy_countries": countries_to_pass,
             "question": {
                 "id": 0,
-                "content": "Tne end."
+                "content": "The end."
             }
         }
     next_question = get_next_question(countries_to_pass)
