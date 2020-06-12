@@ -228,13 +228,24 @@ def new_first_shade_question(countries):
     result_faulty = []
     result_truthy = []
     for country in countries:
-        result = new_has_shade(country, [green])
-        if result[1][0]:
+        result = new_first_shade_question_spec(country)
+        if result[1]:
             result_truthy.append(result[0])
         else:
             result_faulty.append(result[0])
     question_content = "Does the flag have any shade of green?"
     return question_content, result_truthy, result_faulty
+
+
+def new_first_shade_question_spec(country):
+    path = 'assets/flags/' + country['code'] + '.PNG'
+    img = cv2.imread(path)
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    lower = np.array(green[0], dtype="uint8")
+    upper = np.array(green[1], dtype="uint8")
+    mask = cv2.inRange(hsv, lower, upper)
+    output = cv2.bitwise_and(img, img, mask=mask)
+    return country, (output != 0).any()
 
 
 def new_have_shade(countries):
