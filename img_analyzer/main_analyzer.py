@@ -79,7 +79,7 @@ def new_have_colors_eq(countries):
                 true_occurencies_for_values[i] += true_occurencies_for_values[i]
     for i in range (len(values)):
         proportion = true_occurencies_for_values[i]/total_len
-        if abs(0.5 - proportion) < best_proportion:
+        if proportion < best_proportion:
             best_proportion = proportion
             best_value_index = i
     result_faulty = []
