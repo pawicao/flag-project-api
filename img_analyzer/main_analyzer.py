@@ -230,7 +230,7 @@ def new_has_shade(country, values):
             mask = cv2.bitwise_or(mask, mask2)
         output = cv2.bitwise_and(img, img, mask=mask)
         return_list.append((output != 0).any())
-    return return_list
+    return (country, return_list)
 
 
 # -- ASPECT RATIO --
