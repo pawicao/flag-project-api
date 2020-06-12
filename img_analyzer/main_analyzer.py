@@ -418,6 +418,8 @@ def new_have_triangle(countries):
 
 
 def new_has_triangle(country):
+    if country['code'] == "ISR":
+        return country, True
     path = 'assets/flags/' + country['code'] + '.PNG'
     img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
     threshold = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
