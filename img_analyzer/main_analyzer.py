@@ -210,6 +210,8 @@ def new_have_shade(countries):
         question_inner_content = "white"
     elif best_value_index == 4:
         question_inner_content = "blue"
+    else:
+        return ("Questions are over!", [], [], 1.0)
     question_content = "Does the flag have any shades of {}?".format(question_inner_content)
     return (question_content, result_truthy, result_faulty, best_proportion)
 
