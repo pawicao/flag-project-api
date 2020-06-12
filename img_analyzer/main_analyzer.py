@@ -360,10 +360,7 @@ def new_have_greater_ratio(countries):
             result_truthy.append(record[0])
         else:
             result_faulty.append(record[0])
-    question_inner_content = ""
-    question_inner_content += values[best_value_index][0]
-    question_inner_content += ':'
-    question_inner_content += values[best_value_index][1]
+    question_inner_content = str(values[best_value_index][0]) + ':' + str(values[best_value_index][1])
     question_content = "Is the width/height ratio of the flag greater or equal {}?".format(question_inner_content)
     return (question_content, result_truthy, result_faulty, best_proportion)
 
