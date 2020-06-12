@@ -71,8 +71,8 @@ def new_have_colors_eq(countries):
     true_occurencies_for_values = [0, 0, 0, 0, 0]
     temp_list = []
     for country in countries:
-        temp_list.append(new_has_colors_eq(country, 0.005, values))
         result_list = new_has_colors_eq(country, 0.005, values)
+        temp_list.append(result_list)
         bool_list = result_list[1]
         for i in range (len(bool_list)):
             if bool_list[i]:
@@ -96,7 +96,6 @@ def new_have_colors_eq(countries):
 
 
 def new_has_colors_eq(country, threshold, values):
-    print(country)
     path = 'assets/flags/' + country['code'] + '.PNG'
     img = Image.open(path)
     width, height = img.size

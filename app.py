@@ -23,7 +23,7 @@ def get_all_countries():
 def start():
     with open('assets/all_countries.json', 'r') as file:
         countries = file.read()
-    question_details = get_next_question(countries)
+    question_details = get_next_question(json.loads(countries))
     dic_response = {
         "countries": countries,
         "faulty_countries": question_details[2],
