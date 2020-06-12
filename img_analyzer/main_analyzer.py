@@ -172,7 +172,7 @@ def new_have_dominating_color(countries):
             result_truthy.append(record[0])
         else:
             result_faulty.append(record[0])
-    question_content = "Is there a color that covers more than {}% of the total flag surface?".format(values[best_value_index]*100)
+    question_content = "Is there a color that covers more than {}% of the total flag surface?".format(round(values[best_value_index]*100,0))
     return (question_content, result_truthy, result_faulty, best_proportion)
 
 
@@ -398,7 +398,54 @@ def has_shape(country, shape):
     return countries_extra[country['code']][shape]
 
 
+#---
+def new_have_shape(countries):
+    total_len = len(countries)
+    best_proportion = 1.0
+    best_value_index = -1
+    values = ["has_cross", "has_star", "has_other_symbols", "is_triband"]
+    true_occurencies_for_values = [0, 0, 0, 0]
+    temp_list = []
+    for country in countries:
+        result_list = new_has_shape(country, values)
+        temp_list.append(result_list)
+        bool_list = result_list[1]
+        for i in range (len(bool_list)):
+            if bool_list[i]:
+                true_occurencies_for_values[i] += 1
+    for i in range (len(values)):
+        proportion = true_occurencies_for_values[i]/total_len
+        if abs(0.5 - proportion) < abs(0.5 - best_proportion):
+            best_proportion = proportion
+            best_value_index = i
+    result_faulty = []
+    result_truthy = []
+    for i in range (len(countries)):
+        record = temp_list[i]
+        booly = record[1]
+        if booly[best_value_index]:
+            result_truthy.append(record[0])
+        else:
+            result_faulty.append(record[0])
+    question_content = ""
+    if best_value_index == 0:
+        question_content = "Are there any crosses on the flag?"
+    elif best_value_index == 1:
+        question_content = "Are there any stars on the flag?"
+    elif best_value_index == 2:
+        question_content = "Are there any symbols (expect stars and crosses) on the flag?"
+    elif best_value_index == 3:
+        question_content = "Is the flag a triband?"
+    else:
+        return "Questions are over!", [], [], 1.0
+    return question_content, result_truthy, result_faulty, best_proportion
 
+
+def new_has_shape(country, values):
+    return_list = []
+    for val in values:
+        return_list.append(countries_extra[country['code']][val])
+    return country, return_list
 
 
 # Function wrapper (extra_params[0] - shape parameter (triband))
@@ -411,3 +458,21 @@ def are_vertical_triband(countries, answer, extra_params):
 # Checks the boolean parameter in the extra triband countries dictionary
 def is_vertical_triband(country, shape):
     return tribands_details[country['code']][shape]
+
+
+#---
+def new_are_vertical_triband(countries):
+    result_faulty = []
+    result_truthy = []
+    for country in countries:
+        result = new_is_vertical_triband(country)
+        if result[1]:
+            result_truthy.append(result[0])
+        else:
+            result_faulty.append(result[0])
+    question_content = "Is this flag a vertical triband?"
+    return question_content, result_truthy, result_faulty, len(result_truthy)/len(countries)
+
+
+def new_is_vertical_triband(country):
+    return country, tribands_details[country['code']]["vertical_triband"]
