@@ -76,7 +76,7 @@ def new_have_colors_eq(countries):
         bool_list = result_list[1]
         for i in range (len(bool_list)):
             if bool_list[i]:
-                true_occurencies_for_values[i] += true_occurencies_for_values[i]
+                true_occurencies_for_values[i] += 1
     for i in range (len(values)):
         proportion = true_occurencies_for_values[i]/total_len
         if abs(0.5 - proportion) < abs(0.5 - best_proportion):
