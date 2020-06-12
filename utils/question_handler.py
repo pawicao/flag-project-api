@@ -32,6 +32,16 @@ def get_response(true_countries, false_countries, answer):
     countries_to_pass = true_countries
     if not answer:
         countries_to_pass = false_countries
+    if(len(countries_to_pass) == 0):
+        return {
+            "countries": countries_to_pass,
+            "faulty_countries": countries_to_pass,
+            "truthy_countries": countries_to_pass,
+            "question": {
+                "id": 555,
+                "content": "Tne end."
+            }
+        }
     next_question = get_next_question(countries_to_pass) #(QuestionContent, Countries yes, Countries no)
     return {
         "countries": countries_to_pass,
