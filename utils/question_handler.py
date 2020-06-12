@@ -64,7 +64,7 @@ def get_next_question(countries):
         func_anchor = functions[i]
         func_results.append(func_anchor(countries))
         proportion = func_results[i][3]
-        if proportion < best_proportion:
+        if abs(0.5 - proportion) < abs(0.5 - best_proportion):
             best_question_index = i
             best_proportion = proportion
     best_question = func_results[best_question_index]
