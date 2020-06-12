@@ -143,6 +143,59 @@ def has_dominating_color(country, percentage):
     return number_of_occurrences[0]/my_sum > percentage
 
 
+#---
+def new_have_dominating_color(countries):
+    total_len = len(countries)
+    best_proportion = 1.0
+    best_value_index = -1
+    values = [0.35, 0.55]
+    true_occurencies_for_values = [0, 0]
+    temp_list = []
+    for country in countries:
+        result_list = new_has_dominating_color(country, values)
+        temp_list.append(result_list)
+        bool_list = result_list[1]
+        for i in range (len(bool_list)):
+            if bool_list[i]:
+                true_occurencies_for_values[i] += 1
+    for i in range (len(values)):
+        proportion = true_occurencies_for_values[i]/total_len
+        if abs(0.5 - proportion) < abs(0.5 - best_proportion):
+            best_proportion = proportion
+            best_value_index = i
+    result_faulty = []
+    result_truthy = []
+    for i in range (len(countries)):
+        record = temp_list[i]
+        booly = record[1]
+        if booly[best_value_index]:
+            result_truthy.append(record[0])
+        else:
+            result_faulty.append(record[0])
+    question_content = "Is there a color that covers more than {}% of the total flag surface?".format(values[best_value_index]*100)
+    return (question_content, result_truthy, result_faulty, best_proportion)
+
+
+def new_has_dominating_color(country, values):
+    path = 'assets/flags/' + country['code'] + '.PNG'
+    img = Image.open(path)
+    all_colors = img.getcolors(1000000)
+    sorted_colors = sorted(all_colors, reverse=True)
+    number_of_occurrences = []
+    for i in sorted_colors:
+        number_of_occurrences.append(i[0])
+
+    my_sum = 0
+    for i in range(len(number_of_occurrences)):
+        my_sum = my_sum + number_of_occurrences[i]
+    img.close()
+
+    return_list = []
+    for val in values:
+        return_list.append(number_of_occurrences[0]/my_sum > val)
+    return country, return_list
+
+
 # -- COLOR DETECTION --
 # Checks if countries flags contain specified colors
 
@@ -301,6 +354,35 @@ def has_triangle(country):
     return False
 
 
+#---
+def new_have_triangle(countries):
+    result_faulty = []
+    result_truthy = []
+    for country in countries:
+        result = new_has_triangle(country)
+        if result[1]:
+            result_truthy.append(result[0])
+        else:
+            result_faulty.append(result[0])
+    question_content = "Is there a triangular element on the flag?"
+    return question_content, result_truthy, result_faulty, len(result_truthy)/len(countries)
+
+
+def new_has_triangle(country):
+    path = 'assets/flags/' + country['code'] + '.PNG'
+    img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+    threshold = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+    contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    for cnt in contours:
+        approx = cv2.approxPolyDP(cnt, 0.01*cv2.arcLength(cnt, True), True)
+        cv2.drawContours(img, [approx], 0, 0, 5)
+        x = approx.ravel()[0]
+        y = approx.ravel()[1]
+        if len(approx) == 3:
+            return country, True
+    return country, False
+
+
 # -- OTHER SHAPES DETECTION --
 # Checks if countries flags contain given shape
 
@@ -314,6 +396,9 @@ def have_shape(countries, answer, extra_params):
 # Checks the boolean parameter in the extra countries dictionary
 def has_shape(country, shape):
     return countries_extra[country['code']][shape]
+
+
+
 
 
 # Function wrapper (extra_params[0] - shape parameter (triband))

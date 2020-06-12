@@ -62,6 +62,8 @@ def get_next_question(countries):
     functions.append(new_have_colors_eq)
     functions.append(new_have_shade)
     functions.append(new_have_greater_ratio)
+    functions.append(new_have_triangle)
+    functions.append(new_have_dominating_color)
     for i in range (len(functions)):
         func_anchor = functions[i]
         func_results.append(func_anchor(countries))
