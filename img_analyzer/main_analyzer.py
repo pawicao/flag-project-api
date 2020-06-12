@@ -340,7 +340,7 @@ def new_have_greater_ratio(countries):
     true_occurencies_for_values = [0, 0]
     temp_list = []
     for country in countries:
-        result_list = new_has_dominating_color(country, values)
+        result_list = new_has_greater_ratio(country, values)
         temp_list.append(result_list)
         bool_list = result_list[1]
         for i in range (len(bool_list)):
