@@ -475,4 +475,7 @@ def new_are_vertical_triband(countries):
 
 
 def new_is_vertical_triband(country):
-    return country, tribands_details[country['code']]["vertical_triband"]
+    code = country['code']
+    if code in tribands_details:
+        return country, tribands_details[code]["vertical_triband"]
+    return country, False
