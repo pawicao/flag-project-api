@@ -44,7 +44,7 @@ def get_response(true_countries, false_countries, answer):
         }
     next_question = get_next_question(countries_to_pass)
     question_id = 555
-    if len(countries_to_pass) == len(next_question[2]) or len(countries_to_pass) == len(next_question[1]):
+    if len(countries_to_pass) < 2 or len(countries_to_pass) == len(next_question[2]) or len(countries_to_pass) == len(next_question[1]):
         question_id = 0
     return {
         "countries": countries_to_pass,
