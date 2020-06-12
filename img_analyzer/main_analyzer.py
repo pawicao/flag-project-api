@@ -333,24 +333,52 @@ def has_greater_ratio(country, width_given, height_given):
 
 #---
 def new_have_greater_ratio(countries):
+    total_len = len(countries)
+    best_proportion = 1.0
+    best_value_index = -1
+    values = [[8, 5], [2,1]]
+    true_occurencies_for_values = [0, 0]
+    temp_list = []
+    for country in countries:
+        result_list = new_has_dominating_color(country, values)
+        temp_list.append(result_list)
+        bool_list = result_list[1]
+        for i in range (len(bool_list)):
+            if bool_list[i]:
+                true_occurencies_for_values[i] += 1
+    for i in range (len(values)):
+        proportion = true_occurencies_for_values[i]/total_len
+        if abs(0.5 - proportion) < abs(0.5 - best_proportion):
+            best_proportion = proportion
+            best_value_index = i
     result_faulty = []
     result_truthy = []
-    for country in countries:
-        result = new_has_greater_ratio(country, 8, 5)
-        if result[1]:
-            result_truthy.append(result[0])
+    for i in range (len(countries)):
+        record = temp_list[i]
+        booly = record[1]
+        if booly[best_value_index]:
+            result_truthy.append(record[0])
         else:
-            result_faulty.append(result[0])
-    question_content = "Is the width/height ratio of the flag greater or equal 8:5?"
-    return question_content, result_truthy, result_faulty, len(result_truthy)/len(countries)
+            result_faulty.append(record[0])
+    question_inner_content = ""
+    question_inner_content += values[best_value_index][0]
+    question_inner_content += ':'
+    question_inner_content += values[best_value_index][1]
+    question_content = "Is the width/height ratio of the flag greater or equal {}?".format(question_inner_content)
+    return (question_content, result_truthy, result_faulty, best_proportion)
 
 
-def new_has_greater_ratio(country, width_given, height_given):
+def new_has_greater_ratio(country, values):
     path = 'assets/flags/' + country['code'] + '.PNG'
     img = Image.open(path)
     width, height = img.size
     img.close()
-    return country, (width / height) >= (width_given / height_given)
+    return_list = []
+    for val in values:
+        width_given = val[0]
+        height_given = val[1]
+        return_list.append((width / height) >= (width_given / height_given))
+    return country, return_list
 
 # -- TRIANGLE DETECTION --
 # Checks if countries flags contain triangles
