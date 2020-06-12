@@ -254,6 +254,27 @@ def has_greater_ratio(country, width_given, height_given):
     return (width/height) >= (width_given/height_given)
 
 
+#---
+def new_have_greater_ratio(countries):
+    result_faulty = []
+    result_truthy = []
+    for country in countries:
+        result = new_has_greater_ratio(country, 8, 5)
+        if result[1]:
+            result_truthy.append(result[0])
+        else:
+            result_faulty.append(result[0])
+    question_content = "Is the width/height ratio of the flag greater or equal 8:5?"
+    return question_content, result_truthy, result_faulty, len(result_truthy)/len(countries)
+
+
+def new_has_greater_ratio(country, width_given, height_given):
+    path = 'assets/flags/' + country['code'] + '.PNG'
+    img = Image.open(path)
+    width, height = img.size
+    img.close()
+    return country, (width / height) >= (width_given / height_given)
+
 # -- TRIANGLE DETECTION --
 # Checks if countries flags contain triangles
 
