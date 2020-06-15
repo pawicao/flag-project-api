@@ -282,10 +282,8 @@ def new_have_shade(countries):
     elif best_value_index == 1:
         question_inner_content = "yellow"
     elif best_value_index == 2:
-        question_inner_content = "green"
-    elif best_value_index == 3:
         question_inner_content = "white"
-    elif best_value_index == 4:
+    elif best_value_index == 3:
         question_inner_content = "blue"
     else:
         return ("The end.", [], [], 1.0)
