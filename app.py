@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask import jsonify, request
 
 from img_analyzer.main_analyzer import new_first_shade_question
-from utils.question_handler import get_response, questions, get_next_question
+from utils.question_handler import get_response
 
 app = flask.Flask(__name__)
 CORS(app)
