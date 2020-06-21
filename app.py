@@ -49,13 +49,6 @@ def process_question():
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.mimetype = "application/json"
     return response
-#@app.route('/processQuestion', methods=['POST'])
-#def process_question():
-#    data = request.get_json()
-#    response = jsonify(get_response(data['countries'], data['question']['id'], data['answer']))
-#    response.headers.add('Access-Control-Allow-Origin', '*')
-#    response.mimetype = "application/json"
-#    return response
 
 
 # Start the application

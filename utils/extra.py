@@ -290,7 +290,8 @@ tribands_details = {"AFG": {"vertical_triband": True}, "AND": {"vertical_triband
                     "SVN": {"vertical_triband": False}, "SYR": {"vertical_triband": False},
                     "TCD": {"vertical_triband": True}, "TJK": {"vertical_triband": False},
                     "UZB": {"vertical_triband": False}, "VEN": {"vertical_triband": False},
-                    "YEM": {"vertical_triband": False}}
+                    "YEM": {"vertical_triband": False}
+                    }
 
 special_questions = {
     1: {
