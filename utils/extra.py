@@ -291,3 +291,90 @@ tribands_details = {"AFG": {"vertical_triband": True}, "AND": {"vertical_triband
                     "TCD": {"vertical_triband": True}, "TJK": {"vertical_triband": False},
                     "UZB": {"vertical_triband": False}, "VEN": {"vertical_triband": False},
                     "YEM": {"vertical_triband": False}}
+
+special_questions = {
+    1: {
+        "question": "Is the first color (starting from top) yellow?",
+        "countries": {
+            "ECU": True,
+            "SRB": False
+        }
+    },
+    2: {
+        "question": "Does the flag contain only one star?",
+        "countries": {
+            "AZE": True,
+            "PRK": True,
+            "UZB": False,
+            "WSM": False,
+            "USA": False,
+            "LBR": True,
+            "PAN": False,
+            "PRI": True,
+            "CHL": True
+        }
+    },
+    3: {
+        "question": "Is one of the parallel horizontal bars of a black color?",
+        "countries": {
+            "ARE": True,
+            "KWT": False
+        }
+    },
+    4: {
+        "question": "Is the first color (starting from left) red?",
+        "countries": {
+            "GIN": True,
+            "MLI": False
+        }
+    },
+    5: {
+        "question": "Is it the flag of Romania?",
+        "countries": {
+            "ROU": True,
+            "TCD": False
+        }
+    },
+    6: {
+        "question": "Are the stars which are on the flag red?",
+        "countries": {
+            "NZL": True,
+            "AUS": False
+        }
+    },
+    7: {
+        "question": "Is the first color (starting from top) red?",
+        "countries": {
+            "NLD": True,
+            "RUS": False
+        }
+    },
+    9: {
+        "question": "Is the cross element on the flag red?",
+        "countries": {
+            "ISL": True,
+            "NOR": False
+        }
+    },
+    11: {
+        "question": "Is the star element on the flag white?",
+        "countries": {
+            "TUR": True,
+            "TUN": False
+        }
+    },
+    14: {
+        "question": "Are the cross elements on the flag red?",
+        "countries": {
+            "GEO": True,
+            "DNK": False
+        }
+    },
+    16: {
+        "question": "Are there any hemicycles on the flag?",
+        "countries": {
+            "GRL": True,
+            "IDN": False
+        }
+    }
+}

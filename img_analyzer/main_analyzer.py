@@ -334,8 +334,8 @@ def new_have_greater_ratio(countries):
     total_len = len(countries)
     best_proportion = 1.0
     best_value_index = -1
-    values = [[8, 5], [2,1]]
-    true_occurencies_for_values = [0, 0]
+    values = [[8, 5], [2, 1], [5, 4], [4, 3]]
+    true_occurencies_for_values = [0, 0, 0, 0]
     temp_list = []
     for country in countries:
         result_list = new_has_greater_ratio(country, values)
@@ -360,7 +360,7 @@ def new_have_greater_ratio(countries):
             result_faulty.append(record[0])
     question_inner_content = str(values[best_value_index][0]) + ':' + str(values[best_value_index][1])
     question_content = "Is the width/height ratio of the flag greater or equal {}?".format(question_inner_content)
-    return (question_content, result_truthy, result_faulty, best_proportion)
+    return question_content, result_truthy, result_faulty, best_proportion
 
 
 def new_has_greater_ratio(country, values):
@@ -416,7 +416,7 @@ def new_have_triangle(countries):
 
 
 def new_has_triangle(country):
-    if country['code'] == "ISR":
+    if country['code'] == "ISR" or country['code'] == "PRI":
         return country, True
     path = 'assets/flags/' + country['code'] + '.PNG'
     img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
